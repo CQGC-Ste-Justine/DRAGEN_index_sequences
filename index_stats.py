@@ -31,9 +31,7 @@ def main(argv):
 # ================================================== #
 
   scriptdir=os.path.abspath(os.path.dirname(sys.argv[0]))
-  print scriptdir
   IndexBarcodes = scriptdir + '/sequencing_index.processed.ALL.txt'
-  print IndexBarcodes
   index1barcodes = {}
   index2barcodes = {}
   indexBarcodes = {}
