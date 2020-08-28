@@ -1,0 +1,7 @@
+tail -n +2 sequencing_index.V1.raw.txt | awk 'BEGIN{OFS=","}{print $2,$1,$3}' | sed -e 's/KAPA_P7_/KAPA_V1_F-/' -e 's/\(KAPA_V1_F-UDI\)\([0-9]\)_/\10\2_/' > sequencing_index.processed.V1_F.txt
+tail -n +2 sequencing_index.V1.raw.txt | awk 'BEGIN{OFS=","}{print $2,$1,$6}' | sed -e 's/KAPA_P7_/KAPA_V1_R-/' -e 's/\(KAPA_V1_R-UDI\)\([0-9]\)_/\10\2_/' > sequencing_index.processed.V1_R.txt
+tail -n +4 sequencing_index.V2.raw.txt | awk 'BEGIN{OFS=","}{print "KAPA_V2_F-UDI"$3"_"$1,$4,$5}' | sed 's/\(KAPA_V2_F-.*_[A-H]\)\([0-9]\),/\10\2,/' > sequencing_index.processed.V2_F.txt
+tail -n +4 sequencing_index.V2.raw.txt | awk 'BEGIN{OFS=","}{print "KAPA_V2_R-UDI"$3"_"$1,$4,$6}' | sed 's/\(KAPA_V2_R-.*_[A-H]\)\([0-9]\),/\10\2,/' > sequencing_index.processed.V2_R.txt
+cat sequencing_index.processed.V1_F.txt sequencing_index.processed.V1_R.txt sequencing_index.processed.V2_F.txt sequencing_index.processed.V2_R.txt > sequencing_index.processed.ALL.txt
+
+index_stats.py -d 
